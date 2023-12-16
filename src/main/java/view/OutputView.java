@@ -12,11 +12,11 @@ public class OutputView {
 
     private static final int d = 0;
 
-    public static void print1() {
-        System.out.println();
+    public static void printPeople(List<String> stringList) {
+        System.out.println(Parser.joinWithoutBlank(stringList));
     }
 
-    public static void print() {
-        System.out.println();
+    public static void printErrorMessage() {
+        System.out.println("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
     }
 }
