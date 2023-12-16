@@ -10,10 +10,10 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int WEEK_DAY = 0, WEENKEDN_DAY = 1;
+        int MONTH_INDEX = 0, DAY_INDEX = 1, WEEK_DAY = 0, WEENKEDN_DAY = 1;
         String monthAndDay = InputView.readMonthAndDay();
-        int monthNumber = Integer.parseInt(monthAndDay.split(",")[0]);
-        String startDay = monthAndDay.split(",")[1];
+        int monthNumber = Integer.parseInt(monthAndDay.split(",")[MONTH_INDEX]);
+        String startDay = monthAndDay.split(",")[DAY_INDEX];
 
         OutputView.printMonthDay(monthAndDay);
 
