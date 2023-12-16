@@ -14,7 +14,7 @@ public class OneCall {
     }
 
     public void matchOnCall(){
-        for(int dayNumber = 1; dayNumber < calender.keySet().size() ; dayNumber++){
+        for(int dayNumber = 1; dayNumber <= calender.keySet().size() ; dayNumber++){
             String day = calender.get(dayNumber).getDay();
             boolean isHoliday = calender.get(dayNumber).isHoliday();
             OutputView.printCalender(monthNumber,
