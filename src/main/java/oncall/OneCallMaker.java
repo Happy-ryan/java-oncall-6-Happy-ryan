@@ -32,24 +32,27 @@ public class OneCallMaker {
             }
             // 오늘이 평일 > 다음 날 휴무일이거나 주말인 경우
             if (isDayWeekDay(day) && day < totalDate && isHolidayOrWeekendDay(day + 1)) {
-                do {
+                weekdayModularIndex = (weekdayModularIndex + 1) % weekdayModular;
+                person = weekDayPeople.get(weekdayModularIndex);
+                if (person.equals(lastPerson)) {
                     weekdayModularIndex = (weekdayModularIndex + 1) % weekdayModular;
                     person = weekDayPeople.get(weekdayModularIndex);
-                } while (person.equals(lastPerson));
+                }
             }
             // 오늘이 주말 > 다음 날 평일인 경우
             if (!isDayWeekDay(day) && day < totalDate && !isHolidayOrWeekendDay(day + 1)) {
-                do {
+                weekendModularIndex = (weekendModularIndex + 1) % weekendModular;
+                person = weekendDayPeople.get(weekendModularIndex);
+                if (person.equals(lastPerson)) {
                     weekendModularIndex = (weekendModularIndex + 1) % weekendModular;
                     person = weekendDayPeople.get(weekendModularIndex);
-                } while (person.equals(lastPerson));
+                }
             }
             monthPeople.add(person);
             lastPerson = person;
         }
         return monthPeople;
     }
-
 
 
     private boolean isHolidayOrWeekendDay(int day) {
