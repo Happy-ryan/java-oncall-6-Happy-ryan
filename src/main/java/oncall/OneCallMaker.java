@@ -20,32 +20,22 @@ public class OneCallMaker {
         int weekdayModular = weekDayPeople.size();
         int weekendModular = weekendDayPeople.size();
         int totalDate = calender.keySet().size();
+        int weekdayModularIndex = 0;
+        int weekendModularIndex = 0;
         String lastPerson = null;
         for (int day = 1; day <= totalDate; day++) {
-            int weekdayModularIndex = (day - 1) % weekdayModular;
-            int weekendModularIndex = (day - 1) % weekendModular;
             String person;
             if (isDayWeekDay(day)) {
-                person = weekDayPeople.get(weekdayModularIndex);
-            } else {
-                person = weekendDayPeople.get(weekendModularIndex);
-            }
-            // 오늘이 평일 > 다음 날 휴무일이거나 주말인 경우
-            if (isDayWeekDay(day) && day < totalDate && isHolidayOrWeekendDay(day + 1)) {
-                weekdayModularIndex = (weekdayModularIndex + 1) % weekdayModular;
-                person = weekDayPeople.get(weekdayModularIndex);
-                if (person.equals(lastPerson)) {
-                    weekdayModularIndex = (weekdayModularIndex + 1) % weekdayModular;
-                    person = weekDayPeople.get(weekdayModularIndex);
+                person = weekDayPeople.get(weekdayModularIndex % weekdayModular);
+                weekdayModularIndex++;
+                if (day < totalDate && isHolidayOrWeekendDay(day + 1) && person.equals(weekendDayPeople.get(weekendModularIndex % weekendModular))) {
+                    weekendModularIndex++;
                 }
-            }
-            // 오늘이 주말 > 다음 날 평일인 경우
-            if (!isDayWeekDay(day) && day < totalDate && !isHolidayOrWeekendDay(day + 1)) {
-                weekendModularIndex = (weekendModularIndex + 1) % weekendModular;
-                person = weekendDayPeople.get(weekendModularIndex);
-                if (person.equals(lastPerson)) {
-                    weekendModularIndex = (weekendModularIndex + 1) % weekendModular;
-                    person = weekendDayPeople.get(weekendModularIndex);
+            } else {
+                person = weekendDayPeople.get(weekendModularIndex % weekendModular);
+                weekendModularIndex++;
+                if (day < totalDate && !isHolidayOrWeekendDay(day + 1) && person.equals(weekDayPeople.get(weekdayModularIndex % weekdayModular))) {
+                    weekdayModularIndex++;
                 }
             }
             monthPeople.add(person);
@@ -53,7 +43,6 @@ public class OneCallMaker {
         }
         return monthPeople;
     }
-
 
     private boolean isHolidayOrWeekendDay(int day) {
         return calender.get(day).isHoliday() || calender.get(day).isWeekendDay();
