@@ -38,7 +38,7 @@ public class Application {
         return false;
     }
 
-    public static List<List<String>> getPeople() {
+    private static List<List<String>> getPeople() {
         int MAX_DAY = 2;
         List<String> weekDayPeople;
         List<String> weekendDayPeople;
