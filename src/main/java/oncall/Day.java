@@ -2,10 +2,13 @@ package oncall;
 
 public class Day {
     private final String day;
+
+    private final boolean isWeekendDay;
     private final boolean isHoliday;
 
-    public Day(String day, boolean isHoliday){
+    public Day(String day, boolean isHoliday,boolean isWeekendDay){
         this.day = day;
+        this.isWeekendDay = isWeekendDay;
         this.isHoliday = isHoliday;
     }
 
@@ -15,5 +18,9 @@ public class Day {
 
     public boolean isHoliday() {
         return isHoliday;
+    }
+
+    public boolean isWeekendDay() {
+        return isWeekendDay;
     }
 }

@@ -28,8 +28,10 @@ public class CalenderMaker {
 
     private Day createDay(List<String> dayOfWeek, Month month, int dayNumber) {
         int mod = (dayNumber - 1) % 7;
+        String currentDay = dayOfWeek.get(mod);
         boolean isHoliday = isHoliday(month, dayNumber);
-        return new Day(dayOfWeek.get(mod), isHoliday);
+        boolean isWeekend = currentDay.equals("토") || currentDay.equals("일");
+        return new Day(currentDay, isHoliday, isWeekend);
     }
 
     private List<String> decideStartDayOfWeek(String day) {
