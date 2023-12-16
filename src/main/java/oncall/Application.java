@@ -15,7 +15,7 @@ public class Application {
         int monthNumber = Integer.parseInt(monthAndDay.split(",")[0]);
         String startDay = monthAndDay.split(",")[1];
 
-        System.out.println(monthAndDay);
+        OutputView.printMonthDay(monthAndDay);
 
         List<List<String>> peoples = getPeople();
         List<String> weekDayPeople = peoples.get(WEEK_DAY);
@@ -53,7 +53,7 @@ public class Application {
                 boolean allValidCheck = validator.allValidateCheck(true, MAX_DAY)
                         && validator.allValidateCheck(false, MAX_DAY);
                 if (isInputValid(allValidCheck)) {
-                    break;  // 유효성 검사를 모두 통과하면 루프를 종료합니다.
+                    break;
                 }
                 OutputView.printErrorMessage();
             } catch (IllegalArgumentException e) {

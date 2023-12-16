@@ -5,12 +5,10 @@ import utils.Parser;
 import java.util.*;
 
 public class OutputView {
-    private static final String a = "";
-    private static final String b = "";
-    private static final String c = "";
 
-    private static final int d = 0;
-
+    public static void printMonthDay(String monthAndDay){
+        System.out.println(monthAndDay);
+    }
     public static void printPeople(List<String> stringList) {
         System.out.println(Parser.joinWithoutBlank(stringList));
     }
